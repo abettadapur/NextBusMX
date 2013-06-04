@@ -23,6 +23,7 @@ namespace NextBusMetro
     /// </summary>
     public sealed partial class RoutePage : NextBusMetro.Common.LayoutAwarePage
     {
+        //a change for git
         const string MAPS_KEY = "An7YFWgFf8yiMsYq3JyjFvxNIaqYKWzD2dra2JgZO8dVqPuSamWUPJbsdkckX2Gr";
         Route currentRoute;
         Direction currentDirection;
