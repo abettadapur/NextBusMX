@@ -142,6 +142,8 @@ namespace NextBusMetro
                     for (int i = 1; i < predictions.Length; i++)
                         SubPredictionBlock.Text += predictions[i] + " minutes  ";
                 }
+                else
+                    PredictionBlock.Text = "No predictions could be found";
 
                 Pushpin p = new Pushpin();
                 MapLayer.SetPosition(p, new Location((stopsList.SelectedItem as Stop).Latitude, (stopsList.SelectedItem as Stop).Longitude));
