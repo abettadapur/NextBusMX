@@ -26,6 +26,8 @@ namespace NextBusMetro
         //a change for git
         const string MAPS_KEY = "An7YFWgFf8yiMsYq3JyjFvxNIaqYKWzD2dra2JgZO8dVqPuSamWUPJbsdkckX2Gr";
         Route currentRoute;
+        List<RadioButton> buttons;
+        int currentIndex=0;
         Direction currentDirection;
         public RoutePage()
         {
@@ -43,16 +45,23 @@ namespace NextBusMetro
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+            buttons = new List<RadioButton>();
             Route route = navigationParameter as Route;
             switch (route.Title)
             {
-                case "Red": RedButton.IsChecked = true; break;
-                case "Blue": BlueButton.IsChecked = true; break;
-                case "Green": GreenButton.IsChecked = true; break;
-                case "Tech Trolley": TrolleyButton.IsChecked = true; break;
-                case "Emory Shuttle": EmoryButton.IsChecked = true; break;
-                case "Night": NightButton.IsChecked = true; break;
+                case "Red": RedButton.IsChecked = true; currentIndex = 0; break;
+                case "Blue": BlueButton.IsChecked = true; currentIndex = 1; break;
+                case "Green": GreenButton.IsChecked = true; currentIndex = 2;  break;
+                case "Tech Trolley": TrolleyButton.IsChecked = true; currentIndex = 3; break;
+                case "Emory Shuttle": EmoryButton.IsChecked = true; currentIndex = 4; break;
+                case "Night": NightButton.IsChecked = true; currentIndex = 5; break;
             }
+            buttons.Add(RedButton);
+            buttons.Add(BlueButton);
+            buttons.Add(GreenButton);
+            buttons.Add(TrolleyButton);
+            buttons.Add(EmoryButton);
+            buttons.Add(NightButton);
 
 
         }
@@ -74,6 +83,7 @@ namespace NextBusMetro
             string title = (string)button.Content;
             Route r = API.ds.Routes.Where(d => d.Title == title).First();
             currentRoute = r;
+            currentIndex = buttons.IndexOf(button);
             if (r.Directions.Count > 1)
             {
                 directionPanel.Children.Clear();
@@ -135,7 +145,7 @@ namespace NextBusMetro
             else
             {
                 var predictions = await API.getPrediction(currentRoute.Tag, currentDirection.Tag, (stopsList.SelectedItem as Stop).Tag);
-                if (predictions != null)
+                if (predictions != null&&predictions.Length>0)
                 {
                     SubPredictionBlock.Text = "";
                     PredictionBlock.Text = predictions[0] + " minutes";
@@ -159,5 +169,6 @@ namespace NextBusMetro
             }
                 
         }
+
     }
 }

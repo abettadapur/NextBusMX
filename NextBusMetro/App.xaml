@@ -564,15 +564,17 @@
                                                          DoubleTemplate="{StaticResource DoubleItemTemplate}"
                                                          TileTemplate="{StaticResource TileItemTemplate}"/>
                     <DataTemplate x:Key="StopListTemplate">
-                        <Grid Margin="6">
+                        <Grid Margin="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             
-                            <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                                <TextBlock Text="{Binding Title}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
-                                <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
+                                <Image Source="ms-appx:///Assets/stop.png" Stretch="UniformToFill" Width="80" Height="80"/>
+                            
+                            <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Title}" Style="{StaticResource ItemTextStyle}" FontSize ="30" MaxHeight="40"/>
+                             
                             </StackPanel>
                         </Grid>
                     </DataTemplate>

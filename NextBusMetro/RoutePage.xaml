@@ -62,7 +62,12 @@
             <StackPanel x:Name="directionPanel" Grid.Row ="1" Orientation="Horizontal" Margin="60,0,0,0">
                 
             </StackPanel>
-            <ListView Grid.Row="2" Grid.RowSpan="4"  Name="stopsList" IsItemClickEnabled="False" IsRightTapEnabled="True" ItemTemplate="{StaticResource StopListTemplate}" SelectionChanged="stopsList_SelectionChanged">
+            <ListView Grid.Row="2" Grid.RowSpan="4"  Name="stopsList" IsItemClickEnabled="False" IsRightTapEnabled="True" ItemTemplate="{StaticResource StopListTemplate}" SelectionChanged="stopsList_SelectionChanged" >
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="FrameworkElement">
+                        <Setter Property="Margin" Value="0 -10 20 0"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 
             </ListView>
             <TextBlock Grid.Row="2" Grid.Column="1" Name="PredictionBlock" FontSize="48"/>
